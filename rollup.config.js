@@ -9,7 +9,7 @@ import gzipPlugin from 'rollup-plugin-gzip';
 import { brotliCompressSync } from 'zlib';
 
 const production = !process.env.ROLLUP_WATCH;
-const hash = String(require('child_process').execSync('git rev-parse --short HEAD')).trim(); // append short git commit to bundles
+//const hash = String(require('child_process').execSync('git rev-parse --short HEAD')).trim(); // append short git commit to bundles
 
 function serve() {
 	let server;
@@ -38,7 +38,7 @@ export default {
 		sourcemap: !production,
 		format: 'iife',
 		name: 'app',
-		file: 'build/bundle.' + hash + '.js'
+		file: 'build/bundle.js'
 	},
 	plugins: [
 		svelte({
@@ -57,7 +57,7 @@ export default {
         
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
-		css({ output: 'bundle.' + hash + '.css' }),
+		css({ output: 'bundle.css' }),
 
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
@@ -75,7 +75,7 @@ export default {
                 {
                     src:'src/*.html',
                     dest: 'build',
-                    transform: (contents) => contents.toString().replace(/\[hash\]/g, hash)
+                    //transform: (contents) => contents.toString()
                 },
                 {
                     src:'src/*.css',
